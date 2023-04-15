@@ -5,9 +5,9 @@ const LOCALSTORAGE_KEY = 'feedback-form-state'; //константа
 const formRef = document.querySelector('.feedback-form');
 
 formRef.addEventListener('submit', onFormSubmit);
-formRef.addEventListener('input', throttle(onTextInput, 2000));
+formRef.addEventListener('input', throttle(onTextInput, 500));
 
-let formData = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY)) || {}; //объект для хранения данных в localStorage
+let formData = {}; //объект для хранения данных в localStorage
 
 checkLocalStorage(); //вызываем чтобы проверить есть ли уже что-то в localStorage
 
@@ -31,8 +31,10 @@ function onTextInput(event) {
 }
 
 function checkLocalStorage(event) {
-  if (formData) {
-    formRef.elements.email.value = formData.email || '';
-    formRef.elements.message.value = formData.message || '';
+  let data = localStorage.getItem(LOCALSTORAGE_KEY);
+  if (data) {
+    formData = JSON.parse(data);
+    formRef.elements.email.value = formData.email;
+    formRef.elements.message.value = formData.message;
   }
 }
