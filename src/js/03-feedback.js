@@ -1,8 +1,8 @@
 import throttle from 'lodash.throttle';
 
-const LOCALSTORAGE_KEY = 'feedback-form-state'; //константа
+const LOCALSTORAGE_KEY = 'feedback-form-state'; //константа, имя ключа для хранения данных в localStorage
 
-const formRef = document.querySelector('.feedback-form');
+const formRef = document.querySelector('.js-feedback-form');
 
 formRef.addEventListener('submit', onFormSubmit);
 formRef.addEventListener('input', throttle(onTextInput, 500));
@@ -26,7 +26,7 @@ function onFormSubmit(event) {
 }
 
 function onTextInput(event) {
-  formData[event.target.name] = event.target.value; //надо использовать именно target, а не currentTarget. Иначе при "всплытии" в currentTarget может быть что угодно (null, document, window...), поэтому lodash.throttle не отрботает
+  formData[event.target.name] = event.target.value; //надо использовать именно target, а не currentTarget. Иначе при "всплытии" в currentTarget может быть что угодно (null, document, window...), поэтому lodash.throttle не отработает
   localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(formData));
 }
 
