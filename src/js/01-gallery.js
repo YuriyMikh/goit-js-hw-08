@@ -5,7 +5,7 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 
 // Change code below this line
 
-const galleryContainerRef = document.querySelector('.gallery');
+const galleryContainerRef = document.querySelector('.js-gallery');
 const galleryMarkup = createGalleryMarkup(galleryItems);
 
 galleryContainerRef.insertAdjacentHTML('afterbegin', galleryMarkup);
