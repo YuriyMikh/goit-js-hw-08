@@ -13,7 +13,7 @@ checkLocalStorage(); //вызываем чтобы проверить есть �
 
 function onFormSubmit(event) {
   event.preventDefault();
-  
+  console.log(formData);
   if (
     formRef.elements.email.value === '' ||
     formRef.elements.message.value === ''
