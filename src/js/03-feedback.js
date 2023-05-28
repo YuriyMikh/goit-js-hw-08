@@ -4,24 +4,26 @@ const LOCALSTORAGE_KEY = 'feedback-form-state'; //константа, имя к�
 
 const formRef = document.querySelector('.js-feedback-form');
 
-formRef.addEventListener('submit', onFormSubmit);
-formRef.addEventListener('input', throttle(onTextInput, 500));
-
-let formData = {}; //объект для хранения данных в localStorage
+let formData = { email: '', message: '' }; //объект для хранения данных в localStorage
 
 checkLocalStorage(); //вызываем чтобы проверить есть ли уже что-то в localStorage
 
+formRef.addEventListener('submit', onFormSubmit);
+formRef.addEventListener('input', throttle(onTextInput, 500));
+
 function onFormSubmit(event) {
   event.preventDefault();
-  console.log(formData);
+
   if (
     formRef.elements.email.value === '' ||
     formRef.elements.message.value === ''
   )
     return alert('Please fill in all fields!');
 
+  console.log(formData);
+
   localStorage.removeItem(LOCALSTORAGE_KEY);
-  event.currentTarget.reset();
+  event.currentTarget.reset(); //удаляем данные, которые ввел пользователь в инпуты
   formData = {};
 }
 
