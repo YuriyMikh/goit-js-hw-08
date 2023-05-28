@@ -4,7 +4,7 @@ const LOCALSTORAGE_KEY = 'feedback-form-state'; //константа, имя к�
 
 const formRef = document.querySelector('.js-feedback-form');
 
-let formData = { email: '', message: '' }; //объект для хранения данных в localStorage
+let formData = {}; //объект для хранения данных в localStorage
 
 checkLocalStorage(); //вызываем чтобы проверить есть ли уже что-то в localStorage
 
@@ -36,7 +36,7 @@ function checkLocalStorage(event) {
   let data = localStorage.getItem(LOCALSTORAGE_KEY);
   if (data) {
     formData = JSON.parse(data);
-    formRef.elements.email.value = formData.email;
-    formRef.elements.message.value = formData.message;
+    formRef.elements.email.value = formData.email || '';
+    formRef.elements.message.value = formData.message || '';
   }
 }
